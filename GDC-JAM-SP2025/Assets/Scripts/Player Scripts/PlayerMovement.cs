@@ -4,101 +4,214 @@ public class PlayerMovement : MonoBehaviour
 {
     // Serialized Fields
     [SerializeField] float speed = 5f;
-    [SerializeField] float jumpPower = 5f;
-    [SerializeField] float jumpMod = 1f; // modifier that allows to jump higher when holding jump, decays each frame
-    [SerializeField] float jumpDecay = 2f; // determines rate of decay for jumpMod. jumpMod will be 0 in 1/jumpDecay seconds
-    [SerializeField] float rapidJumpDecay = 4f; // determines rapid decay to yVelo when not holding space. yVelo will be 0 in 1/rapidFumpDecay seconds
-    //[SerializeField] float freeAirTime = 0.1f; // seconds of time after releasing space that player hovers. 
-    [SerializeField] float edgeJumpLienency = 1f;
+    [SerializeField] float yInitialVelo = 15f;
+    [SerializeField] float yIncrementalVelo = 10f; // gains/loses this amount of velocity per second. Also acts as gravity for player
+    [SerializeField] float maxJumpHeight = 20f;
+    [SerializeField] float maxYVelo = 8f;
+    [SerializeField] float hoverCoef = 0.8f;
+    [SerializeField] float yLowVelo = 2f;
+    [SerializeField] float edgeJumpLienency = 0.3f; // time not on ground where player can still jump
+    [SerializeField] float groundCheckDistance = 0.5f;
+    [SerializeField] GameObject test;
 
-    // Private Fields
+    JumpPhase curPhase = JumpPhase.Fall;
+
+    float yVeloDirection = -1;
+    float yPosInitial;
+    float hoverMod;
+
+
+    enum JumpPhase
+    {
+        Acceleration,
+        Deceleration,
+        Hover,
+        Fall
+    }
+
+    // private fields
+    private BoxCollider2D boxCol;
+    private Vector2 groundRayStart = Vector2.zero;
+    private Vector2 centerRayStart = Vector2.zero;
     private Vector2 velo = Vector2.zero;
     private Rigidbody2D rb;
     private bool isGrounded = false;
-    private float curJumpMod;
-    private float maxYVelo = 0;
-    private float freeAirUntil;
+    private float lienencyTime = 0;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCol = GetComponent<BoxCollider2D>();
+
+        groundRayStart.y -= boxCol.bounds.extents.y + 0.008f;
+        groundRayStart.x = boxCol.bounds.extents.x + 0.00001f;
+        centerRayStart.y = groundRayStart.y;
+
     }
 
-    void Update()
+    private void Update()
     {
 
-        // check for walking off platform without jumping
-        // increasing threshold allows for more leniency with jumping while slightly off edge
-        if (rb.linearVelocityY > edgeJumpLienency || rb.linearVelocityY < -edgeJumpLienency && isGrounded)
+        // check if grounded
+        RaycastHit2D ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
+        Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+
+        if (!ray) // if ray not hitting, check other edge of player
+        {
+            groundRayStart.x *= -1;
+            ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
+            Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+
+            if (!ray) // if ray still not hitting, check directly below player. If not hit after this assume not on ground
+            {
+                ray = Physics2D.Raycast(centerRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
+                Debug.DrawRay(centerRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+
+            }
+        }
+
+        if (ray && ray.transform.gameObject.tag == "platform")
+        {
+            isGrounded = true;
+        }
+        else
         {
             isGrounded = false;
         }
 
-        // Detect jump input
-        if (Input.GetKey(KeyCode.Space))
+        // do extra grounded check to avoid false positives
+        if (isGrounded && (rb.linearVelocityY > 0.001f || rb.linearVelocityY < -0.001f))
         {
-            if(isGrounded)
-            {
-                isGrounded = false;
-                curJumpMod = jumpMod;
-                maxYVelo = jumpPower;
-            }
-            else
-            {
-                curJumpMod -= jumpDecay * jumpMod * Time.deltaTime;
-                curJumpMod = (curJumpMod < 0) ? 0 : curJumpMod;
-            }
-
-            rb.linearVelocityY += curJumpMod * maxYVelo * Time.deltaTime;
-
-            if(maxYVelo < rb.linearVelocityY)
-            {
-                maxYVelo = rb.linearVelocityY;
-            }
-        }
-        else
-        {
-            // if let go of space, wont go higher
-            curJumpMod = 0;
-
-            // set y velo to slow down faster when not holding space
-            // This is to make it easier and more responsive to stop gaining altitude
-            if(velo.y > 0.01)
-            {
-                //two approaches to making jumps feel more responsive. Comment out whichever one feels worse
-
-                rb.linearVelocityY -= (rapidJumpDecay * maxYVelo) * Time.deltaTime; 
-
-                //freeAirUntil = Time.time + freeAirTime;
-                //rb.linearVelocityY = 0;
-            }
+            isGrounded = false;
         }
 
-        float xVelo = Input.GetAxisRaw("Horizontal");
-
-        velo.x = xVelo * speed;
-
-        if(Time.time > freeAirUntil)
+        //Debug.Log("G2: " + isGrounded + "\nLien: " + lienencyTime + "\nTime: " + Time.time);
+        // allow to still jump edgeJumpLienency seconds after walking off edge
+        if (isGrounded)
         {
-            velo.y = rb.linearVelocityY;
+            lienencyTime = Time.time + edgeJumpLienency;
         }
-        else
+        else if (lienencyTime > Time.time)
         {
+            isGrounded = true;
             velo.y = 0;
         }
 
-        //Debug.Log("Grounded: " + isGrounded + "\nVelo: " + velo);
+        hoverMod = 1;
+        velo.y = rb.linearVelocityY;
 
+        // Detect jump input
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (isGrounded)
+            {
+                isGrounded = false;
+                velo.y = yInitialVelo;
+                curPhase = JumpPhase.Acceleration;
+                yVeloDirection = 1;
+                yPosInitial = transform.position.y;
+                lienencyTime = 0;
+            }
+            else
+            {
+                if (curPhase != JumpPhase.Acceleration)
+                {
+                    yVeloDirection = -1;
+
+                    if (curPhase == JumpPhase.Hover)
+                    {
+                        hoverMod = hoverCoef;
+                    }
+                }
+
+                if (curPhase < JumpPhase.Hover && transform.position.y - yPosInitial > maxJumpHeight)
+                {
+                    curPhase = JumpPhase.Hover;
+                }
+
+                if(velo.y > maxYVelo)
+                {
+                    velo.y = maxYVelo;
+                    curPhase = JumpPhase.Deceleration;
+                }
+                else if (velo.y <= 0) 
+                {
+                    if (curPhase == JumpPhase.Deceleration)
+                    {
+                        curPhase = JumpPhase.Hover;
+                    }
+                    else if (velo.y <= -yLowVelo)
+                    {
+                        curPhase = JumpPhase.Fall;
+                    }
+
+                }
+            }
+        }
+        else
+        {
+            // not holding jump
+            if (curPhase <= JumpPhase.Hover)
+            {
+                yVeloDirection = -1;
+                if (curPhase == JumpPhase.Hover)
+                {
+                    curPhase = (velo.y <= -yLowVelo) ? JumpPhase.Fall : JumpPhase.Hover;
+                    hoverMod = hoverCoef;
+                }
+                else
+                {
+                    curPhase = JumpPhase.Hover;
+                }
+            }
+            else
+            {
+                hoverMod = 1;
+                
+            }
+            if (velo.y > yLowVelo)
+            {
+                velo.y = yLowVelo;
+            }
+
+
+        }
+
+        float xJumpVeloMod;
+        if (isGrounded)
+        {
+            xJumpVeloMod = 1;
+        }
+        else
+        {
+            xJumpVeloMod = 0.75f;
+        }
+        velo.x = Input.GetAxisRaw("Horizontal") * speed * xJumpVeloMod;
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (isGrounded)
+        {
+            velo.y = 0;
+        }
+        else
+        {
+            velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
+        }
         rb.linearVelocity = velo;
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        // allow to jump again if touching platform while not having any Y velo (to prevent wall jumping)
-        if(col.gameObject.CompareTag("platform") && rb.linearVelocityY == 0)
+        if( col.gameObject.tag == "platform" && curPhase == JumpPhase.Acceleration)
         {
-            isGrounded = true;
+            curPhase = JumpPhase.Deceleration;
         }
     }
+
 
 }

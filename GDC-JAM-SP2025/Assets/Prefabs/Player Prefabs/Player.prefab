@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8044999922918302710}
   - component: {fileID: 6096974997831894640}
+  - component: {fileID: 1382911174835828810}
   - component: {fileID: 6194036754337210951}
   - component: {fileID: 7036347937942470057}
   m_Layer: 0
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 8743bbe241af95e45868bab0ca2a5b82, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.56353164, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -89,6 +90,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1382911174835828810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906280676027830783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b0dc3e220afac4b93906206879b7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  yInitialVelo: 4
+  yIncrementalVelo: 30
+  maxJumpHeight: 999
+  maxYVelo: 9
+  hoverCoef: 0.7
+  yLowVelo: 3
+  edgeJumpLienency: 0.07
+  groundCheckDistance: 0.1
 --- !u!50 &6194036754337210951
 Rigidbody2D:
   serializedVersion: 5
@@ -104,7 +126,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -115,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7036347937942470057
 BoxCollider2D:
   m_ObjectHideFlags: 0
