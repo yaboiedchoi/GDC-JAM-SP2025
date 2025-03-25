@@ -10,6 +10,13 @@ interface IInteractable
     public void interactUI(bool state); // allow to manually activate any UI component of interactable
 }
 
+
+/*
+ * The Interactor script should only go on the player, no other gameobject should have it. Instead, have whatever script attached to an
+ * interactable object implement the IInteractable interface. Just code whatever effect you want in the interact() method. interactUI can
+ * do nothing if you don't have UI associated with the object or don't want it to be set manually. Use a collider set to trigger to determine where
+ * player can interact with your object.
+ */
 public class Interactor : MonoBehaviour
 {
 

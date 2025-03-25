@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8044999922918302710}
   - component: {fileID: 6096974997831894640}
+  - component: {fileID: 9194928883177572729}
   - component: {fileID: 1382911174835828810}
   - component: {fileID: 6194036754337210951}
   - component: {fileID: 7036347937942470057}
@@ -90,6 +91,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9194928883177572729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906280676027830783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e0962f3ea79f144af90b0ff0007f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1382911174835828810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,14 +116,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  yInitialVelo: 4
-  yIncrementalVelo: 30
+  yInitialVelo: 6
+  yIncrementalVelo: 25
   maxJumpHeight: 999
   maxYVelo: 9
-  hoverCoef: 0.7
+  hoverCoef: 1
   yLowVelo: 3
-  edgeJumpLienency: 0.07
-  groundCheckDistance: 0.1
+  edgeJumpLienency: 0.1
+  groundCheckDistance: 0.001
+  test: {fileID: 0}
 --- !u!50 &6194036754337210951
 Rigidbody2D:
   serializedVersion: 5

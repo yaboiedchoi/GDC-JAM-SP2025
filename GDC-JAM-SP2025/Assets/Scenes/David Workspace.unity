@@ -790,24 +790,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86dcc05971e7d984b8506c3d4be3dae7, type: 3}
---- !u!1 &967683984 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5906280676027830783, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-  m_PrefabInstance: {fileID: 2613672991403698308}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &967683990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967683984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e0962f3ea79f144af90b0ff0007f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pCol: {fileID: 0}
 --- !u!1 &1064213825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,26 +1978,6 @@ PrefabInstance:
       propertyPath: test
       value: 
       objectReference: {fileID: 553819215}
-    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: hoverCoef
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: yInitialVelo
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: edgeJumpLienency
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: yIncrementalVelo
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: groundCheckDistance
-      value: 0.001
-      objectReference: {fileID: 0}
     - target: {fileID: 5906280676027830783, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2063,10 +2025,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5906280676027830783, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 967683990}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
 --- !u!1001 &2705921023901576121
 PrefabInstance:
