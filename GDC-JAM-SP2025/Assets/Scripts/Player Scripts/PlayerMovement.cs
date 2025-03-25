@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
 
-        groundRayStart.y -= boxCol.bounds.extents.y + 0.008f;
+        groundRayStart.y -= boxCol.bounds.extents.y + 0.015f; //8
         groundRayStart.x = boxCol.bounds.extents.x + 0.00001f;
         centerRayStart.y = groundRayStart.y;
 
@@ -80,23 +80,21 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
+        Debug.Log("1 "+ isGrounded);
+
         // do extra grounded check to avoid false positives
         if (isGrounded && (rb.linearVelocityY > 0.001f || rb.linearVelocityY < -0.001f))
         {
             isGrounded = false;
         }
 
-        //Debug.Log("G2: " + isGrounded + "\nLien: " + lienencyTime + "\nTime: " + Time.time);
         // allow to still jump edgeJumpLienency seconds after walking off edge
         if (isGrounded)
         {
             lienencyTime = Time.time + edgeJumpLienency;
         }
-        else if (lienencyTime > Time.time)
-        {
-            isGrounded = true;
-            velo.y = 0;
-        }
+
+        bool inLien = lienencyTime > Time.time;
 
         hoverMod = 1;
         velo.y = rb.linearVelocityY;
@@ -104,10 +102,11 @@ public class PlayerMovement : MonoBehaviour
         // Detect jump input
         if (Input.GetKey(KeyCode.Space))
         {
-            if (isGrounded)
+            if (isGrounded || inLien)
             {
                 isGrounded = false;
-                velo.y = yInitialVelo;
+                velo.y = yInitialVelo; 
+                rb.linearVelocityY = velo.y;
                 curPhase = JumpPhase.Acceleration;
                 yVeloDirection = 1;
                 yPosInitial = transform.position.y;
@@ -115,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+               
                 if (curPhase != JumpPhase.Acceleration)
                 {
                     yVeloDirection = -1;
@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if( col.gameObject.tag == "platform" && curPhase == JumpPhase.Acceleration)
         {
-            curPhase = JumpPhase.Deceleration;
+            curPhase = JumpPhase.Fall;
         }
     }
 

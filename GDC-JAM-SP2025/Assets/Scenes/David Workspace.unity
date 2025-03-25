@@ -1997,12 +1997,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 553819215}
     - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: hoverCoef
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: yInitialVelo
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: edgeJumpLienency
-      value: 0.025
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1382911174835828810, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: yIncrementalVelo
