@@ -3,17 +3,16 @@ using UnityEngine;
 public class DemoPlayerManager : MonoBehaviour
 {
     [SerializeField] Lever lever;
-    [SerializeField] Door door;
+    [SerializeField] Door exitDoor;
+    [SerializeField] Door otherDoor;
 
+    private void Start()
+    {
+        otherDoor.openDoor();
+    }
     private void Update()
     {
-        if (lever.signal)
-        {
-            door.openDoor();
-        }
-        else
-        {
-            door.closeDoor();
-        }
+        exitDoor.isOpen(lever.signal);
+        otherDoor.isOpen(!lever.signal);
     }
 }

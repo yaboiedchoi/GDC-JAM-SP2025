@@ -35,9 +35,18 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 centerRayStart = Vector2.zero;
     private Vector2 velo = Vector2.zero;
     private Rigidbody2D rb;
-    private bool isGrounded = false;
     private float lienencyTime = 0;
+    private bool isGrounded = false;
 
+
+    // method that allows other scripts to reset movement
+    public void resetMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
+        velo = Vector2.zero;
+        isGrounded = false;
+        lienencyTime = 0;
+    }
 
     void Start()
     {
@@ -57,13 +66,14 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
         Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
 
-        if (!ray) // if ray not hitting, check other edge of player
+        if (!ray || ray.transform.gameObject.tag != "platform") // if ray not hitting, check other edge of player
         {
             groundRayStart.x *= -1;
             ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
             Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
 
-            if (!ray) // if ray still not hitting, check directly below player. If not hit after this assume not on ground
+            // if ray still not hitting, check directly below player. If not hit after this assume not on ground
+            if (!ray || ray.transform.gameObject.tag != "platform") 
             {
                 ray = Physics2D.Raycast(centerRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
                 Debug.DrawRay(centerRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);

@@ -29,4 +29,16 @@ public class Door : MonoBehaviour
         doorCol.enabled = true;
         doorRender.color = orig_color;
     }
+
+    public void isOpen(bool state)
+    {
+        if(state)
+        {
+            openDoor();
+        }
+        else
+        {
+            closeDoor();
+        }
+    }
 }
