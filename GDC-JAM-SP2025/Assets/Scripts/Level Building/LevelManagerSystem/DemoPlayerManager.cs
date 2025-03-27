@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class DemoPlayerManager : MonoBehaviour
+interface LevelManager
+{
+    public void nextLevel();
+}
+public class DemoPlayerManager : MonoBehaviour, LevelManager
 {
     [SerializeField] Lever lever;
     [SerializeField] Door exitDoor;
@@ -14,5 +18,10 @@ public class DemoPlayerManager : MonoBehaviour
     {
         exitDoor.isOpen(lever.signal);
         otherDoor.isOpen(!lever.signal);
+    }
+
+    public void nextLevel()
+    {
+        Debug.Log("You beat the demo level!!!!!");
     }
 }

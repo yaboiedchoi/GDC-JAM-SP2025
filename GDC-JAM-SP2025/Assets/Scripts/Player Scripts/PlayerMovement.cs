@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float lienencyTime = 0;
     private bool isGrounded = false;
+    private RaycastHit2D ray;
+    private string platformTag = "platform"; // using "platform" in update creates garbage
+    private string horiz = "Horizontal";
 
 
     // method that allows other scripts to reset movement
@@ -46,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         velo = Vector2.zero;
         isGrounded = false;
         lienencyTime = 0;
+        curPhase = JumpPhase.Fall;
     }
 
     void Start()
@@ -63,25 +67,25 @@ public class PlayerMovement : MonoBehaviour
     {
 
         // check if grounded
-        RaycastHit2D ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-        Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+        ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
+        //Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
 
-        if (!ray || ray.transform.gameObject.tag != "platform") // if ray not hitting, check other edge of player
+        if (!ray || ray.transform.gameObject.tag != platformTag) // if ray not hitting, check other edge of player
         {
             groundRayStart.x *= -1;
             ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-            Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+            //Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
 
             // if ray still not hitting, check directly below player. If not hit after this assume not on ground
-            if (!ray || ray.transform.gameObject.tag != "platform") 
+            if (!ray || ray.transform.gameObject.tag != platformTag) 
             {
                 ray = Physics2D.Raycast(centerRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-                Debug.DrawRay(centerRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
+                //Debug.DrawRay(centerRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
 
             }
         }
 
-        if (ray && ray.transform.gameObject.tag == "platform")
+        if (ray && ray.transform.gameObject.tag == platformTag)
         {
             isGrounded = true;
         }
@@ -90,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
-        Debug.Log("1 "+ isGrounded);
 
         // do extra grounded check to avoid false positives
         if (isGrounded && (rb.linearVelocityY > 0.001f || rb.linearVelocityY < -0.001f))
@@ -104,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
             lienencyTime = Time.time + edgeJumpLienency;
         }
 
-        bool inLien = lienencyTime > Time.time;
 
         hoverMod = 1;
         velo.y = rb.linearVelocityY;
@@ -112,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         // Detect jump input
         if (Input.GetKey(KeyCode.Space))
         {
-            if (isGrounded || inLien)
+            if (isGrounded || lienencyTime > Time.time)
             {
                 isGrounded = false;
                 velo.y = yInitialVelo; 
@@ -197,30 +199,49 @@ public class PlayerMovement : MonoBehaviour
         {
             xJumpVeloMod = 0.75f;
         }
-        velo.x = Input.GetAxisRaw("Horizontal") * speed * xJumpVeloMod;
+        velo.x = Input.GetAxisRaw(horiz) * speed * xJumpVeloMod;
 
 
     }
 
     private void FixedUpdate()
     {
+
+        if (curPhase == JumpPhase.Acceleration && rb.linearVelocityY == 0)
+        {
+            curPhase = JumpPhase.Fall;
+        }
+
+        yVeloDirection = (curPhase == JumpPhase.Acceleration) ? 1 : -1;
+
         if (isGrounded)
         {
-            velo.y = 0;
+            //velo.y = 0;
         }
         else
         {
             velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
         }
         rb.linearVelocity = velo;
+        debugInfo();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if( col.gameObject.tag == "platform" && curPhase == JumpPhase.Acceleration)
+        if( col.gameObject.tag == platformTag && curPhase == JumpPhase.Acceleration)
         {
             curPhase = JumpPhase.Fall;
         }
+    }
+
+    private void debugInfo()
+    {
+        Debug.Log("Velo: " + rb.linearVelocity
+            + "\nGrounded: " + isGrounded
+            + "\nPhase: " + curPhase
+            + "\nYVDir: " + yVeloDirection
+            );
+        
     }
 
 
