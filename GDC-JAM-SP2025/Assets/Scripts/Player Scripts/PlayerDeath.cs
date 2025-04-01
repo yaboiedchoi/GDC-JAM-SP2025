@@ -1,9 +1,16 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject deadBodyPrefab;
+    [SerializeField] TMP_Text sanityUi;
+
+    [NonSerialized] public int curSanity = 0;
+    public int maxSanity = 5;
+
 
     Vector3 lastPos;
     Quaternion lastRot;
@@ -11,9 +18,11 @@ public class PlayerDeath : MonoBehaviour
     float lastDeathTime;
 
     PlayerMovement movementScript;
+
     private void Start()
     {
-     movementScript = GetComponent<PlayerMovement>();   
+        movementScript = GetComponent<PlayerMovement>();
+        curSanity = maxSanity;
     }
 
     /*
@@ -28,6 +37,8 @@ public class PlayerDeath : MonoBehaviour
         lastRot = transform.rotation;
         sendToSpawn();
         movementScript.resetMovement();
+        curSanity--;
+        updateSanityUI();
 
         Instantiate(deadBodyPrefab, lastPos, lastRot);
         lastDeathTime = Time.time;
@@ -38,6 +49,11 @@ public class PlayerDeath : MonoBehaviour
     public void sendToSpawn() 
     { 
         transform.position = spawnPoint.position;
+    }
+
+    public void updateSanityUI()
+    {
+        sanityUi.text = "Sanity: " + curSanity + "/" + maxSanity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

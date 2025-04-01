@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float yLowVelo = 2f;
     [SerializeField] float edgeJumpLienency = 0.3f; // time not on ground where player can still jump
     [SerializeField] float groundCheckDistance = 0.5f;
-    [SerializeField] GameObject test;
 
     JumpPhase curPhase = JumpPhase.Fall;
 
@@ -31,13 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     // private fields
     private BoxCollider2D boxCol;
-    private Vector2 groundRayStart = Vector2.zero;
-    private Vector2 centerRayStart = Vector2.zero;
     private Vector2 velo = Vector2.zero;
     private Rigidbody2D rb;
     private float lienencyTime = 0;
     private bool isGrounded = false;
-    private RaycastHit2D ray;
     private string platformTag = "platform"; // using "platform" in update creates garbage
     private string horiz = "Horizontal";
 
@@ -55,51 +51,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCol = GetComponent<BoxCollider2D>();
-
-        groundRayStart.y -= boxCol.bounds.extents.y + 0.015f; //8
-        groundRayStart.x = boxCol.bounds.extents.x + 0.00001f;
-        centerRayStart.y = groundRayStart.y;
 
     }
 
     private void Update()
     {
-
-        // check if grounded
-        ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-        //Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
-
-        if (!ray || ray.transform.gameObject.tag != platformTag) // if ray not hitting, check other edge of player
-        {
-            groundRayStart.x *= -1;
-            ray = Physics2D.Raycast(groundRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-            //Debug.DrawRay(groundRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
-
-            // if ray still not hitting, check directly below player. If not hit after this assume not on ground
-            if (!ray || ray.transform.gameObject.tag != platformTag) 
-            {
-                ray = Physics2D.Raycast(centerRayStart + (Vector2)transform.position, Vector2.down, groundCheckDistance);
-                //Debug.DrawRay(centerRayStart + (Vector2)transform.position, Vector2.down * groundCheckDistance, Color.red);
-
-            }
-        }
-
-        if (ray && ray.transform.gameObject.tag == platformTag)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
-
-        // do extra grounded check to avoid false positives
-        if (isGrounded && (rb.linearVelocityY > 0.001f || rb.linearVelocityY < -0.001f))
-        {
-            isGrounded = false;
-        }
 
         // allow to still jump edgeJumpLienency seconds after walking off edge
         if (isGrounded)
@@ -214,25 +170,26 @@ public class PlayerMovement : MonoBehaviour
 
         yVeloDirection = (curPhase == JumpPhase.Acceleration) ? 1 : -1;
 
-        if (isGrounded)
-        {
-            //velo.y = 0;
-        }
-        else
+        if (!isGrounded)
         {
             velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
         }
         rb.linearVelocity = velo;
-        //debugInfo();
     }
 
-   
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        if( col.gameObject.tag == platformTag && curPhase == JumpPhase.Acceleration)
+        if (col.gameObject.tag == platformTag)
         {
-            
-            curPhase = JumpPhase.Fall;
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == platformTag)
+        {
+            isGrounded = false;
         }
     }
 
