@@ -19,6 +19,8 @@ public class PlayerDeath : MonoBehaviour
 
     PlayerMovement movementScript;
 
+    GhostMovement[] ghosts;
+
     private void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
@@ -43,6 +45,16 @@ public class PlayerDeath : MonoBehaviour
         Instantiate(deadBodyPrefab, lastPos, lastRot);
         lastDeathTime = Time.time;
 
+        // set cooldown to all ghosts
+        ghosts = FindObjectsByType<GhostMovement>(FindObjectsSortMode.None); 
+        // this might be not very efficient, but killPlayer() should happen sparce enough that it doesnt really matter.
+        // can change later to a data struct that a ghost is added/removed to dynamically through the enemy spawner.
+        // or even better something could be done with a static var
+        foreach (GhostMovement ghost in ghosts)
+        {
+            ghost.activateCooldown();
+        }
+
     }
 
     // Putting player spawning in seperate public function in case other scripts want to be able to spawn player outside of player dying
@@ -57,6 +69,14 @@ public class PlayerDeath : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "hazard" && Time.time > lastDeathTime + deathCooldown)
+        {
+            killPlayer();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "hazard" && Time.time > lastDeathTime + deathCooldown)
         {

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float yInitialVelo = 15f;
     [SerializeField] float yIncrementalVelo = 10f; // gains/loses this amount of velocity per second. Also acts as gravity for player
     [SerializeField] float maxJumpHeight = 20f;
-    [SerializeField] float maxYVelo = 8f;
+    [SerializeField] float accelTime = 0.2f; // time in air player spends accelerating in seconds
     [SerializeField] float hoverCoef = 0.8f;
     [SerializeField] float yLowVelo = 2f;
     [SerializeField] float edgeJumpLienency = 0.3f; // time not on ground where player can still jump
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
     private string platformTag = "platform"; // using "platform" in update creates garbage
     private string horiz = "Horizontal";
+    private float accelUntil = 0;
 
 
     // method that allows other scripts to reset movement
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
                 yVeloDirection = 1;
                 yPosInitial = transform.position.y;
                 lienencyTime = 0;
+                accelUntil = Time.time + accelTime;
             }
             else
             {
@@ -98,10 +100,9 @@ public class PlayerMovement : MonoBehaviour
                     curPhase = JumpPhase.Hover;
                 }
 
-                if(velo.y > maxYVelo)
+                if (accelUntil < Time.time && curPhase == JumpPhase.Acceleration)
                 {
-                    velo.y = maxYVelo;
-                    curPhase = JumpPhase.Deceleration;
+                    curPhase = JumpPhase.Hover;
                 }
                 else if (velo.y <= 0) 
                 {
@@ -192,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+  
 
     private void debugInfo()
     {

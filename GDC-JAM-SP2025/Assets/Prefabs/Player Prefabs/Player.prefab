@@ -360,7 +360,7 @@ MonoBehaviour:
   yInitialVelo: 6
   yIncrementalVelo: 25
   maxJumpHeight: 999
-  maxYVelo: 9
+  accelTime: 0.12
   hoverCoef: 1
   yLowVelo: 3
   edgeJumpLienency: 0.1
@@ -498,5 +498,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.95, y: 0.060533404}
+  m_Size: {x: 0.965, y: 0.060533404}
   m_EdgeRadius: 0
