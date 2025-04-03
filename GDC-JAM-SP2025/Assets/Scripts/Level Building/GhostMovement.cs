@@ -5,6 +5,7 @@ public class GhostMovement : MonoBehaviour
     [SerializeField] float speed = 5;
     [SerializeField] float cooldownTime = 5;
     [SerializeField] float deviationTime = 5; // how long until deviation magnitude is re-randomized
+    [SerializeField] bool goSpawn;
 
     static bool onCooldown = false; // shared between all ghosts
 
@@ -73,7 +74,7 @@ public class GhostMovement : MonoBehaviour
                 updatedCooldown = true;
             }
 
-            playerDir = spawnCoord - transform.position;
+            playerDir = goSpawn ?  spawnCoord - transform.position : Vector2.zero;
 
         }
         else
