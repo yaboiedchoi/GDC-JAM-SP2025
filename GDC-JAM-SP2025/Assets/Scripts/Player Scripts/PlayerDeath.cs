@@ -41,8 +41,8 @@ public class PlayerDeath : MonoBehaviour
         movementScript.resetMovement();
         curSanity--;
         updateSanityUI();
-
-        Instantiate(deadBodyPrefab, lastPos, lastRot);
+        if (CorpseManager.Instance)
+            CorpseManager.Instance.corpses.Add(Instantiate(deadBodyPrefab, lastPos, lastRot));
         lastDeathTime = Time.time;
 
         // set cooldown to all ghosts
