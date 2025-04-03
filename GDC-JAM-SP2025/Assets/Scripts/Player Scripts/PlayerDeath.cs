@@ -27,6 +27,12 @@ public class PlayerDeath : MonoBehaviour
         curSanity = maxSanity;
     }
 
+    /*
+     * Functionality for what happens when player dies. In future could put animation and/or particle system stuff in here.
+     * Also any logic for sanity and stuff too
+     * 
+     * For now, it just "respawns" (teleports) the player to the spawn point
+     */
     public void killPlayer()
     {
         lastPos = transform.position;
@@ -35,9 +41,8 @@ public class PlayerDeath : MonoBehaviour
         movementScript.resetMovement();
         curSanity--;
         updateSanityUI();
-
-        Instantiate(deadBodyPrefab, lastPos, lastRot);
-
+        if (CorpseManager.Instance)
+            CorpseManager.Instance.corpses.Add(Instantiate(deadBodyPrefab, lastPos, lastRot));
         lastDeathTime = Time.time;
 
         // set cooldown to all ghosts
