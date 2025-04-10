@@ -9,7 +9,7 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] TMP_Text sanityUi;
 
     [NonSerialized] public int curSanity = 0;
-    public int maxSanity = 5;
+    public static int maxSanity = 5;
 
 
     Vector3 lastPos;
@@ -30,8 +30,6 @@ public class PlayerDeath : MonoBehaviour
     /*
      * Functionality for what happens when player dies. In future could put animation and/or particle system stuff in here.
      * Also any logic for sanity and stuff too
-     * 
-     * For now, it just "respawns" (teleports) the player to the spawn point
      */
     public void killPlayer()
     {
