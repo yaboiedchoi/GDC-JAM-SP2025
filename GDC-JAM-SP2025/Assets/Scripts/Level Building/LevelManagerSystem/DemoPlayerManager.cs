@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 interface LevelManager
 {
     public void nextLevel();
+    public void setSanity();
 }
 public class DemoPlayerManager : MonoBehaviour, LevelManager
 {
@@ -10,9 +12,12 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     [SerializeField] Door exitDoor;
     [SerializeField] Door otherDoor;
 
+    private int sanity = 5;
+
     private void Start()
     {
         otherDoor.openDoor();
+        setSanity();
     }
     private void Update()
     {
@@ -22,6 +27,13 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
 
     public void nextLevel()
     {
+        //SceneManager.LoadScene("Scene Name"); Do something like this to load next level
         Debug.Log("You beat the demo level!!!!!");
+    }
+
+    // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup
+    public void setSanity()
+    {
+        PlayerDeath.maxSanity = sanity;
     }
 }
