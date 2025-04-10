@@ -35,9 +35,15 @@ public class PlayerDeath : MonoBehaviour
     {
         lastPos = transform.position;
         lastRot = transform.rotation;
+        curSanity--;
+
+        if (maxSanity - curSanity <= 0)
+        {
+            GhostSpawner.spawnGhost(lastPos);
+        }
+
         sendToSpawn();
         movementScript.resetMovement();
-        curSanity--;
         updateSanityUI();
         if (CorpseManager.Instance)
             CorpseManager.Instance.corpses.Add(Instantiate(deadBodyPrefab, lastPos, lastRot));
@@ -64,6 +70,7 @@ public class PlayerDeath : MonoBehaviour
     public void updateSanityUI()
     {
         sanityUi.text = "Sanity: " + curSanity + "/" + maxSanity;
+        // also send a signal to ghostspawner
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
