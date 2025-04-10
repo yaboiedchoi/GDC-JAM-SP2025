@@ -6,14 +6,27 @@ public class Lever : MonoBehaviour, IInteractable
     [SerializeField] GameObject UI;
     public bool signal = false;
 
+    [SerializeField] SpriteRenderer sr;
+
     private void Start()
     {
         if (UI != null) 
             UI.SetActive(false);
+
+        // get color of lever
+        sr = GetComponent<SpriteRenderer>();
     }
     public void interact()
     {
         signal = !signal;
+        // green if active, 107 255 0
+        // purple if inactive, 150, 0, 255
+        if (signal) {
+            sr.color = new Color(107, 255, 0);
+        }
+        else {
+            sr.color = new Color(150, 0, 255);
+        }
     }
 
     public void interactUI(bool state)

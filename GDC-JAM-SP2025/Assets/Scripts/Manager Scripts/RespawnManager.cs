@@ -33,6 +33,8 @@ public class RespawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // get new list of anchors
+        // set new spawn point
         if (respawnAnchors.Count > 0) {
             respawnPoint.transform.position = respawnAnchors.Peek().transform.position;
         }
