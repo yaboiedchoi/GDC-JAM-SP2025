@@ -2617,7 +2617,7 @@ GameObject:
   - component: {fileID: 855817714}
   m_Layer: 0
   m_Name: RespawnAnchor
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6359,7 +6359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeadec34cc0b4904b32f695d9007367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 0}
+  respawnPoint: {fileID: 57035442}
 --- !u!1 &2080479260
 GameObject:
   m_ObjectHideFlags: 0
