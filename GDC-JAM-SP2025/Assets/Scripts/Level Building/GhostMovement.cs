@@ -5,7 +5,7 @@ public class GhostMovement : MonoBehaviour
     [SerializeField] float speed = 5;
     [SerializeField] float cooldownTime = 5;
     [SerializeField] float deviationTime = 5; // how long until deviation magnitude is re-randomized
-    [SerializeField] bool goSpawn;
+    public bool goSpawn;
 
     static bool onCooldown = false; // shared between all ghosts
 
@@ -24,7 +24,8 @@ public class GhostMovement : MonoBehaviour
     Vector2 playerDir;
     Vector3 spawnCoord;
 
-    private void Start()
+  
+    private void Awake()
     {
         spawnCoord = transform.position;
 
@@ -37,7 +38,7 @@ public class GhostMovement : MonoBehaviour
         // randomly set every deviationTime seconds
         randomDeviation.x = UnityEngine.Random.Range(-1, 1);
         randomDeviation.y = UnityEngine.Random.Range(-1, 1);
-        speedDeviation = UnityEngine.Random.Range(1f, 4);
+        speedDeviation = UnityEngine.Random.Range(2f, 4);
 
 
         player = GameObject.Find("Player");

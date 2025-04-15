@@ -9,8 +9,8 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] GameObject deadBodyPrefab;
     [SerializeField] TMP_Text sanityUi;
 
-    [NonSerialized] public int curSanity = 0;
-    public static int maxSanity = 5;
+    [NonSerialized] public static int curSanity = 0;
+    private static int maxSanity = 5; // use setMaxSanity to set from another script. Otherwise this is default value
 
 
     Vector3 lastPos;
@@ -28,17 +28,27 @@ public class PlayerDeath : MonoBehaviour
         curSanity = maxSanity;
     }
 
-    /*
-     * Functionality for what happens when player dies. In future could put animation and/or particle system stuff in here.
-     * Also any logic for sanity and stuff too
-     */
+    // Sets max sanity and updates player to full sanity
+    public static void setMaxSanity(int sanity)
+    {
+        maxSanity = sanity;
+        curSanity = maxSanity;
+    }
+
+    // Getter for max sanity
+    public static int getMaxSanity()
+    {
+        return maxSanity;
+    }
+
+  
     public void killPlayer()
     {
         lastPos = transform.position;
         lastRot = transform.rotation;
         curSanity--;
 
-        if (maxSanity - curSanity <= 0)
+        if (curSanity <= 0)
         {
             GhostSpawner.spawnGhost(lastPos);
         }
@@ -52,7 +62,8 @@ public class PlayerDeath : MonoBehaviour
 
         foreach (GameObject ghost in GhostSpawner.ghostList)
         {
-            ghost.GetComponent<GhostMovement>().activateCooldown();
+            if (ghost != null)
+                ghost.GetComponent<GhostMovement>().activateCooldown();
         }
 
     }
