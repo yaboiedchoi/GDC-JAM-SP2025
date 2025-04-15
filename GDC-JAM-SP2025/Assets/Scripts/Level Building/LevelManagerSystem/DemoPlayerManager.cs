@@ -12,6 +12,7 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     [SerializeField] Door exitDoor;
     [SerializeField] Door otherDoor;
 
+<<<<<<< Updated upstream
     // respawn anchors
     [SerializeField] Lever leftAnchorLever;
     [SerializeField] Lever rightAnchorLever;
@@ -19,6 +20,9 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     [SerializeField] RespawnAnchor rightAnchor;
 
     private int sanity = 5;
+=======
+    private int sanity = 1;
+>>>>>>> Stashed changes
 
     private void Start()
     {

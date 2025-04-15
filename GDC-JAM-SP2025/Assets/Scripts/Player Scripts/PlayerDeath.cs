@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerDeath : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerDeath : MonoBehaviour
 
     PlayerMovement movementScript;
 
-    GhostMovement[] ghosts;
+    static List<GhostMovement> ghosts = new List<GhostMovement>();
 
     private void Start()
     {
@@ -49,14 +50,9 @@ public class PlayerDeath : MonoBehaviour
             CorpseManager.Instance.corpses.Add(Instantiate(deadBodyPrefab, lastPos, lastRot));
         lastDeathTime = Time.time;
 
-        // set cooldown to all ghosts
-        ghosts = FindObjectsByType<GhostMovement>(FindObjectsSortMode.None); 
-        // this might be not very efficient, but killPlayer() should happen sparce enough that it doesnt really matter.
-        // can change later to a data struct that a ghost is added/removed to dynamically through the enemy spawner.
-        // or even better something could be done with a static var
-        foreach (GhostMovement ghost in ghosts)
+        foreach (GameObject ghost in GhostSpawner.ghostList)
         {
-            ghost.activateCooldown();
+            ghost.GetComponent<GhostMovement>().activateCooldown();
         }
 
     }

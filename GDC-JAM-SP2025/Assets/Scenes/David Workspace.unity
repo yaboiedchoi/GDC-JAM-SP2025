@@ -6123,8 +6123,9 @@ GameObject:
   - component: {fileID: 2078317464}
   - component: {fileID: 2078317463}
   - component: {fileID: 2078317465}
+  - component: {fileID: 2078317466}
   m_Layer: 0
-  m_Name: LeverManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6173,7 +6174,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpses: []
-  limitCorpses: 0
+  limitCorpses: 1
+--- !u!114 &2078317466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078317462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e0701163b31a54ebc0103784dfc41f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghost: {fileID: 2068037836262687461, guid: aeba1592f2ff1c54f9bcc350a720d2f6, type: 3}
 --- !u!1 &2080479260
 GameObject:
   m_ObjectHideFlags: 0

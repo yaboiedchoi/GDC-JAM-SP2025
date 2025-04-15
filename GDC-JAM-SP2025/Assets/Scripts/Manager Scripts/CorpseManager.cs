@@ -15,7 +15,7 @@ public class CorpseManager : MonoBehaviour
 
     private void Awake() 
     {
-        // If there is an instance, and it's not me, delete myself.
+        // If there is an instance, and it's not me, delete myself. 
 
         if (Instance != null && Instance != this) 
         { 
@@ -36,6 +36,7 @@ public class CorpseManager : MonoBehaviour
     void Update()
     {
         if (limitCorpses && corpses.Count > 3) {
+            GhostSpawner.killGhost();
             Destroy(corpses[0]);
             corpses.RemoveAt(0);
         }
