@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private float lienencyTime = 0;
     private bool isGrounded = false;
     private string platformTag = "platform"; // using "platform" in update creates garbage
+    private string playerTag = "Player";
     private string horiz = "Horizontal";
     private float accelUntil = 0;
 
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == platformTag)
+        if (col.gameObject.tag == platformTag || col.gameObject.tag == playerTag)
         {
             isGrounded = true;
         }
@@ -188,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == platformTag)
+        if (col.gameObject.tag == platformTag || col.gameObject.tag == playerTag)
         {
             isGrounded = false;
         }

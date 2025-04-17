@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    [NonSerialized] bool state = false;
+    [NonSerialized] public bool state = false;
     private string playerTag = "Player"; // using string literals in looping code creates garbage
     Color defaultColor;
 
@@ -12,7 +12,7 @@ public class Button : MonoBehaviour
         defaultColor = GetComponent<SpriteRenderer>().color;
     }
 
-    private void OnCollisionStay2D(Collision2D col)
+    private void OnCollisionStay2D(Collision2D col) 
     {
         if (col.gameObject.tag == playerTag && !state)
         {
