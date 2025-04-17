@@ -15,8 +15,8 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     [SerializeField] Door otherDoor;
 
     // respawn anchors
-    [SerializeField] Lever leftAnchorLever;
-    [SerializeField] Lever rightAnchorLever;
+    [SerializeField] Button leftAnchorButton;
+    [SerializeField] Button rightAnchorButton;
     [SerializeField] RespawnAnchor leftAnchor;
     [SerializeField] RespawnAnchor rightAnchor;
 
@@ -31,6 +31,30 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     {
         exitDoor.isOpen(lever.signal);
         otherDoor.isOpen(!lever.signal);
+
+        if (leftAnchorButton &&
+            rightAnchorButton &&
+            leftAnchor &&
+            rightAnchor) {
+            if (leftAnchorButton.state)
+                RespawnManager.Instance.respawnAnchors.Add(leftAnchor);
+            else if(!leftAnchorButton.state) 
+                RespawnManager.Instance.respawnAnchors.Remove(leftAnchor);
+            else if(rightAnchorButton.state) 
+                RespawnManager.Instance.respawnAnchors.Add(rightAnchor);
+            else if(!rightAnchorButton.state) 
+                RespawnManager.Instance.respawnAnchors.Remove(rightAnchor);
+        }
+
+        for (int i = 0; i < RespawnManager.Instance.respawnAnchors.Count; i++)
+        {
+            if (i == 0) {
+                RespawnManager.Instance.respawnAnchors[i].TurnOn();
+            }
+            else {
+                RespawnManager.Instance.respawnAnchors[i].TurnOff();
+            }
+        }
 
         // Allow to reset level by pressing r
         if (Input.GetKeyDown(KeyCode.R))
