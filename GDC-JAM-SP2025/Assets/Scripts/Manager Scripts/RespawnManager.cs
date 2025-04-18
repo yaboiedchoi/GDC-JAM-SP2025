@@ -6,7 +6,7 @@ public class RespawnManager : MonoBehaviour
 {
     public static RespawnManager Instance;
 
-    public Stack<GameObject> respawnAnchors;
+    public List<RespawnAnchor> respawnAnchors;
 
     [SerializeField]
     private GameObject respawnPoint;
@@ -27,7 +27,7 @@ public class RespawnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        respawnAnchors = new Stack<GameObject>();
+        respawnAnchors = new List<RespawnAnchor>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class RespawnManager : MonoBehaviour
         // get new list of anchors
         // set new spawn point
         if (respawnAnchors.Count > 0) {
-            respawnPoint.transform.position = respawnAnchors.Peek().transform.position;
+            respawnPoint.transform.position = respawnAnchors[0].transform.position;
         }
     }
 }
