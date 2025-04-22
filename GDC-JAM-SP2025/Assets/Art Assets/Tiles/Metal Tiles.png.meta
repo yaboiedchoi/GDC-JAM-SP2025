@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0d49134c04e0594a9143f26562d9415
-      internalID: -930665299
+      spriteID: b9edc16cce6382e4499219a79ae8e6ca
+      internalID: 324181518
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c8ea9efce3ace2459d544a4d660f37a
-      internalID: -1560686654
+      spriteID: 2b8ad6f120698b349bfc52984b1b4129
+      internalID: -2068143959
       vertices: []
       indices: 
       edges: []
@@ -181,14 +181,80 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 261e5601f0b8ba34dbf06c52c6dfcc6d
-      internalID: -1019670608
+      spriteID: 53b396913e13b4d4ca295651f5c5fe56
+      internalID: 39061521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: Metal Tiles_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1d53736f91ad2e4d8f63c7761a480d9
+      internalID: -1114614529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_5
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3450c681bfabef845b04f12db1136cc2
+      internalID: -1113812834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24edb265c4febfa42878b725e074b967
+      internalID: 50028770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_7
       rect:
         serializedVersion: 2
         x: 0
@@ -203,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a1c8b60df7a1bb4582701a9b07d5f70
-      internalID: 1053102362
+      spriteID: d4e36f51deed4454c8c48ece801f4f12
+      internalID: -792643376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_5
+      name: Metal Tiles_8
       rect:
         serializedVersion: 2
         x: 32
@@ -225,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54e7472a6af16d741920c09948418136
-      internalID: 954385126
+      spriteID: aff60761aa19cf04cbc13802c9efea45
+      internalID: -769935832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_6
+      name: Metal Tiles_9
       rect:
         serializedVersion: 2
         x: 64
@@ -247,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e03000ff177bcaf4da8b43c705c1d4e9
-      internalID: 353799918
+      spriteID: e9a5524f0c447344ebc701395eb4f20f
+      internalID: 1043199253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_7
+      name: Metal Tiles_10
       rect:
         serializedVersion: 2
         x: 96
@@ -269,14 +335,124 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51329e3954c8ea64489913e83faced9a
-      internalID: 1348760499
+      spriteID: feb5df9ba5252f14ebab731ebc066e55
+      internalID: 1584056212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_8
+      name: Metal Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc70fb1974ddb7e4c93eead867803cdd
+      internalID: 2006478994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf236f274b8dee44bdabb6e1aea757f
+      internalID: -452788153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79d036b7e3524fd4baae46f67916dbef
+      internalID: 981376101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0152125937783aa459592dead7329c0a
+      internalID: -856217257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68ef224e68bee142b28b56935278fef
+      internalID: 595916128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_16
       rect:
         serializedVersion: 2
         x: 0
@@ -291,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d387ee0e800028428fb72967e234409
-      internalID: 721794983
+      spriteID: d2fd55e079f841d41a7da6ac3df84ba7
+      internalID: 1527054696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_9
+      name: Metal Tiles_17
       rect:
         serializedVersion: 2
         x: 32
@@ -313,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a262b9a268156da499e34bee4d1b356c
-      internalID: -641499587
+      spriteID: 70f98d4ea34c4b1438394f9a40cacde7
+      internalID: -217032558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Metal Tiles_10
+      name: Metal Tiles_18
       rect:
         serializedVersion: 2
         x: 64
@@ -335,8 +511,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78828319b38338c4a83c5c656a917cfc
-      internalID: -1470961724
+      spriteID: b7a90d43f9867a24cb328e38b651d606
+      internalID: -1965680633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03afc2b0d7c85f4d9b66634614860f8
+      internalID: -798740261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_20
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91de94e340811de438f251f3194ab3f0
+      internalID: 322068711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1319d57a8955a8441919d3bb8be05585
+      internalID: -1190014776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Metal Tiles_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd731ba54066cf2429d3eb6453f183ab
+      internalID: 315568058
       vertices: []
       indices: 
       edges: []
@@ -345,7 +609,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5635f3b47386cc64482eec34447d597e
+    spriteID: 9a8bffb2e08b6994a8e40089c0ea1b75
     internalID: 0
     vertices: []
     indices: 
@@ -356,16 +620,28 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Metal Tiles_0: -5404730702946810573
-      Metal Tiles_1: -930665299
-      Metal Tiles_10: -1470961724
-      Metal Tiles_2: -1560686654
-      Metal Tiles_3: -1019670608
-      Metal Tiles_4: 1053102362
-      Metal Tiles_5: 954385126
-      Metal Tiles_6: 353799918
-      Metal Tiles_7: 1348760499
-      Metal Tiles_8: 721794983
-      Metal Tiles_9: -641499587
+      Metal Tiles_1: 324181518
+      Metal Tiles_10: 1584056212
+      Metal Tiles_11: 2006478994
+      Metal Tiles_12: -452788153
+      Metal Tiles_13: 981376101
+      Metal Tiles_14: -856217257
+      Metal Tiles_15: 595916128
+      Metal Tiles_16: 1527054696
+      Metal Tiles_17: -217032558
+      Metal Tiles_18: -1965680633
+      Metal Tiles_19: -798740261
+      Metal Tiles_2: -2068143959
+      Metal Tiles_20: 322068711
+      Metal Tiles_21: -1190014776
+      Metal Tiles_22: 315568058
+      Metal Tiles_3: 39061521
+      Metal Tiles_4: -1114614529
+      Metal Tiles_5: -1113812834
+      Metal Tiles_6: 50028770
+      Metal Tiles_7: -792643376
+      Metal Tiles_8: -769935832
+      Metal Tiles_9: 1043199253
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
