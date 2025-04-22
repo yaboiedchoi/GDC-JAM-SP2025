@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private string playerTag = "Player";
     private string horiz = "Horizontal";
     private float accelUntil = 0;
+    private float xJumpVeloMod;
+
 
 
     // method that allows other scripts to reset movement
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Update()
+    private void updateMovement()
     {
 
         // allow to still jump edgeJumpLienency seconds after walking off edge
@@ -90,32 +92,16 @@ public class PlayerMovement : MonoBehaviour
                 {
                     yVeloDirection = -1;
 
-                    if (curPhase == JumpPhase.Hover)
-                    {
-                        hoverMod = hoverCoef;
-                    }
                 }
 
-                if (curPhase < JumpPhase.Hover && transform.position.y - yPosInitial > maxJumpHeight)
+                if (curPhase < JumpPhase.Fall && transform.position.y - yPosInitial > maxJumpHeight)
                 {
-                    curPhase = JumpPhase.Hover;
+                    curPhase = JumpPhase.Fall;
                 }
 
                 if (accelUntil < Time.time && curPhase == JumpPhase.Acceleration)
                 {
-                    curPhase = JumpPhase.Hover;
-                }
-                else if (velo.y <= 0) 
-                {
-                    if (curPhase == JumpPhase.Deceleration)
-                    {
-                        curPhase = JumpPhase.Hover;
-                    }
-                    else if (velo.y <= -yLowVelo)
-                    {
-                        curPhase = JumpPhase.Fall;
-                    }
-
+                    curPhase = JumpPhase.Deceleration;
                 }
             }
         }
@@ -148,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        float xJumpVeloMod;
         if (isGrounded)
         {
             xJumpVeloMod = 1;
@@ -157,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
         {
             xJumpVeloMod = 0.75f;
         }
-        velo.x = Input.GetAxisRaw(horiz) * speed * xJumpVeloMod;
 
 
     }
@@ -165,16 +149,30 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
+        updateMovement();
+
         if (curPhase == JumpPhase.Acceleration && rb.linearVelocityY == 0)
         {
             curPhase = JumpPhase.Fall;
         }
+        else if (velo.y <= -yLowVelo)
+        {
+            curPhase = JumpPhase.Fall;
+            
+        }
 
         yVeloDirection = (curPhase == JumpPhase.Acceleration) ? 1 : -1;
+        velo.x = Input.GetAxisRaw(horiz) * speed * xJumpVeloMod;
+
 
         if (!isGrounded)
         {
+            velo.y = rb.linearVelocityY;
             velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
+        }
+        else
+        {
+            velo.y = 0;
         }
         rb.linearVelocity = velo;
     }
