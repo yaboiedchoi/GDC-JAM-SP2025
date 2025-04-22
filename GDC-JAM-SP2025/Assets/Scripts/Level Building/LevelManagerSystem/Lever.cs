@@ -22,10 +22,10 @@ public class Lever : MonoBehaviour, IInteractable
         // green if active, 107 255 0
         // purple if inactive, 150, 0, 255
         if (signal) {
-            sr.color = new Color(107, 255, 0);
+            sr.flipX = true;
         }
         else {
-            sr.color = new Color(150, 0, 255);
+            sr.flipX= false;
         }
     }
 

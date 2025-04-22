@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float edgeJumpLienency = 0.3f; // time not on ground where player can still jump
     [SerializeField] float groundCheckDistance = 0.5f;
 
+    [SerializeField] AudioClip walkingAudioClip;
+
     JumpPhase curPhase = JumpPhase.Fall;
 
     float yVeloDirection = -1;
@@ -29,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // private fields
-    private BoxCollider2D boxCol;
+    private AudioManager audioManager;
+    private SpriteRenderer sr;
     private Vector2 velo = Vector2.zero;
     private Rigidbody2D rb;
     private float lienencyTime = 0;
@@ -39,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private string horiz = "Horizontal";
     private float accelUntil = 0;
     private float xJumpVeloMod;
+    private bool facingRight = true;
 
 
 
@@ -55,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        sr = GetComponent<SpriteRenderer>();
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
     }
 
     private void updateMovement()
@@ -163,18 +168,40 @@ public class PlayerMovement : MonoBehaviour
 
         yVeloDirection = (curPhase == JumpPhase.Acceleration) ? 1 : -1;
         velo.x = Input.GetAxisRaw(horiz) * speed * xJumpVeloMod;
-
+        
+        if (velo.x != 0)
+        {
+            facingRight = (velo.x > 0);
+            sr.flipX = !facingRight;
+        }
 
         if (!isGrounded)
         {
             velo.y = rb.linearVelocityY;
             velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
+
         }
         else
         {
             velo.y = 0;
         }
         rb.linearVelocity = velo;
+
+        
+        
+    }
+
+    private void Update()
+    {
+        
+        if (isGrounded && Mathf.Abs(rb.linearVelocityX) > 0.01f)
+        {
+            audioManager.playSoundEffect(walkingAudioClip, true);
+        }
+        else
+        {
+            audioManager.stopLooping(walkingAudioClip);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
