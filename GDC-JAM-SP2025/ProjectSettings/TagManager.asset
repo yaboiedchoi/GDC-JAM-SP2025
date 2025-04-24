@@ -6,6 +6,7 @@ TagManager:
   tags:
   - platform
   - hazard
+  - audio
   layers:
   - Default
   - TransparentFX

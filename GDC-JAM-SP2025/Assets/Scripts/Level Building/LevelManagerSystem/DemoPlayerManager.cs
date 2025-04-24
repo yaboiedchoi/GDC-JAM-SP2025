@@ -20,7 +20,7 @@ public class DemoPlayerManager : MonoBehaviour, LevelManager
     [SerializeField] RespawnAnchor leftAnchor;
     [SerializeField] RespawnAnchor rightAnchor;
 
-    private int sanity = 3;
+    private int sanity = 999;
 
     private void Start()
     {
