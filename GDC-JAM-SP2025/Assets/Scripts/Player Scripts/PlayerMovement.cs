@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // private fields
     private AudioManager audioManager;
     private SpriteRenderer sr;
+    private Animator animator;
     private Vector2 velo = Vector2.zero;
     private Rigidbody2D rb;
     private float lienencyTime = 0;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private string platformTag = "platform"; // using "platform" in update creates garbage
     private string playerTag = "Player";
     private string horiz = "Horizontal";
+    private string walking = "isWalking";
     private float accelUntil = 0;
     private float xJumpVeloMod;
     private bool facingRight = true;
@@ -61,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+        animator = GetComponent<Animator>();
     }
 
     private void updateMovement()
@@ -194,6 +197,16 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         
+        if (Mathf.Abs(rb.linearVelocityX) > 0.01f)
+        {
+            animator.SetBool(walking, true);
+        }
+        else
+        {
+            animator.SetBool(walking, false);
+
+        }
+
         if (isGrounded && Mathf.Abs(rb.linearVelocityX) > 0.01f)
         {
             audioManager.playSoundEffect(walkingAudioClip, true);
