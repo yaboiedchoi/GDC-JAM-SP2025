@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
 
     [SerializeField] float raiseSpeed = 5f;
+    [SerializeField] float raiseMult = 1; // raises by height*raiseMult
 
     [NonSerialized] public bool isUnlocked = false;
 
@@ -25,7 +26,7 @@ public class Door : MonoBehaviour
         doorRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         orig_color = doorRender.color;
-        raiseDist = doorCol.bounds.extents.y;
+        raiseDist = doorCol.bounds.extents.y * raiseMult * 2;
         ogPos = transform.position;
     }
 
