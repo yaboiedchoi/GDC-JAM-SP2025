@@ -209,11 +209,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Mathf.Abs(rb.linearVelocityX) > 0.01f)
         {
-            audioManager.playSoundEffect(walkingAudioClip, true);
+            audioManager.startFootstep(0.4f, walkingAudioClip);
         }
         else
         {
-            audioManager.stopLooping(walkingAudioClip);
+            audioManager.stopFootstep();
         }
     }
 

@@ -5,41 +5,33 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource SFX;
 
-    bool firstPlay;
+    AudioClip footstepClip;
+
+    bool playing;
     float pitch;
     private void Start()
     {
         pitch = SFX.pitch;
     }
-    public void playSoundEffect(AudioClip clip, bool randomizePitch)
+    private void playFootstep()
     {
-        float randomPitch = randomizePitch ? (UnityEngine.Random.Range(0.7f, 1.3f)) : 1f;
-        SFX.pitch = pitch * randomPitch;
-
-        if (SFX.clip != clip)
-        {
-            firstPlay = true;
-            SFX.clip = clip;
-            SFX.loop = true;
-            SFX.time = 0;
-            SFX.Play();
-        }
-        else
-        {
-            SFX.loop = true;
-            if(!SFX.isPlaying)
-            {
-                SFX.Play();
-            }
-        }
+        SFX.pitch = UnityEngine.Random.Range(0.6f, 1.4f) * pitch;
+        SFX.PlayOneShot(footstepClip);
     }
 
-    public void stopLooping(AudioClip clip)
+    public void startFootstep(float footstepSpeed, AudioClip footstep)
     {
-        if (SFX.clip == clip)
+        footstepClip = footstep;
+        if(!playing)
         {
-            SFX.loop = false;
+            InvokeRepeating(nameof(playFootstep), 0, footstepSpeed);
         }
+        playing = true;
     }
 
+    public void stopFootstep()
+    {
+        CancelInvoke(nameof(playFootstep));
+        playing = false;
+    }
 }

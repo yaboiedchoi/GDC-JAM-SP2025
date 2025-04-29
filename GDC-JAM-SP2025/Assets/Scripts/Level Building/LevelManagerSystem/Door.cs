@@ -12,6 +12,9 @@ public class Door : MonoBehaviour
 
     BoxCollider2D doorCol;
     SpriteRenderer doorRender;
+    Animator anim;
+
+
     Rigidbody2D rb;
     Color orig_color;
     float raiseDist;
@@ -25,9 +28,13 @@ public class Door : MonoBehaviour
         doorCol = GetComponent<BoxCollider2D>();
         doorRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         orig_color = doorRender.color;
         raiseDist = doorCol.bounds.extents.y * raiseMult * 2;
         ogPos = transform.position;
+
+        anim.SetBool("isOpen", !isUnlocked);
+
     }
 
     private void FixedUpdate()
@@ -50,14 +57,20 @@ public class Door : MonoBehaviour
 
     public void openDoor()
     {
-        doorRender.color = Color.gray;
+        //doorRender.color = Color.gray;
         isUnlocked = true;
+        anim.SetBool("isOpen", !isUnlocked);
+        doorCol.enabled = false;
     }
 
     public void closeDoor()
     {
-        doorRender.color = orig_color;
+        //doorRender.color = orig_color;
         isUnlocked = false;
+        anim.SetBool("isOpen", !isUnlocked);
+        doorCol.enabled = true;
+
+
     }
 
     public void isOpen(bool state)
