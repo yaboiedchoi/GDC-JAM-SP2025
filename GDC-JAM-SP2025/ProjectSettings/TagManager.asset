@@ -7,6 +7,8 @@ TagManager:
   - platform
   - hazard
   - audio
+  - Level Manager
+  - spawn
   layers:
   - Default
   - TransparentFX

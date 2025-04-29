@@ -5,7 +5,18 @@ public class RespawnAnchor : MonoBehaviour
 {
     private bool isActive;
 
-    [SerializeField] SpriteRenderer sr;
+    [SerializeField] Sprite activeSprite;
+    [SerializeField] Sprite deactiveSprite;
+
+    [SerializeField] float hoverSpeed = 5f;
+    [SerializeField] float switchTime = 0.5f;
+
+    [SerializeField] bool startActive = false;
+
+    Rigidbody2D rb;
+    SpriteRenderer sr;
+
+    Transform spawnPoint;
 
     // public property for triangle color 
     // neon blue for inactive, orange for active
@@ -34,19 +45,29 @@ public class RespawnAnchor : MonoBehaviour
     {
         // get color value of the triangle on top of the anchor
         sr = GetComponent<SpriteRenderer>();
+
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocityY = hoverSpeed;
+        spawnPoint = GameObject.FindGameObjectWithTag("spawn").transform;
+        if (startActive)
+        {
+            TurnOn();
+        }
+        InvokeRepeating(nameof(switchDirection), 0, switchTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void switchDirection()
     {
-        
+        rb.linearVelocityY *= -1;
     }
+
     public void TurnOn() {
         isActive = true;
-        TriangleColor = new Color(255, 179, 0);
+        sr.sprite = activeSprite;
+        spawnPoint.position = transform.position;
     }
     public void TurnOff() {
         isActive = false;
-        TriangleColor = new Color(0, 226, 255);
+        sr.sprite = deactiveSprite;
     }
 }

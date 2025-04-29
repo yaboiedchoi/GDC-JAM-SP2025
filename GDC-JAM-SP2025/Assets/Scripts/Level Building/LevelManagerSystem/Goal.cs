@@ -5,7 +5,13 @@ public class Goal : MonoBehaviour
 {
     [SerializeField] GameObject levelManager;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Start()
+    {
+        if (levelManager == null)
+            levelManager = GameObject.FindGameObjectWithTag("Level Manager");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
