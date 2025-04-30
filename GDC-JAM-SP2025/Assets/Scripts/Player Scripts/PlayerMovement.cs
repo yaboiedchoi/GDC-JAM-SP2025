@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravityMult = 1.5f; // mult incremental velo when falling
 
     [SerializeField] AudioClip walkingAudioClip;
+    
 
     JumpPhase curPhase = JumpPhase.Fall;
 
@@ -214,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Mathf.Abs(rb.linearVelocityX) > 0.01f)
         {
-            audioManager.startFootstep(0.4f, walkingAudioClip);
+            audioManager.startFootstep(0.45f, walkingAudioClip);
         }
         else
         {
