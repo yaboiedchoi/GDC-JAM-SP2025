@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 85b0dc3e220afac4b93906206879b7c3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - walkingAudioClip: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
