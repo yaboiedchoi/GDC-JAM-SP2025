@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RespawnAnchor : MonoBehaviour
@@ -12,6 +13,12 @@ public class RespawnAnchor : MonoBehaviour
     [SerializeField] float switchTime = 0.5f;
 
     [SerializeField] bool startActive = false;
+
+    [SerializeField] Rigidbody2D linkedObject; // will follow this object if not null
+
+    float hoverDir = -1;
+    Vector2 startPos; // need to stop slight drifting
+    Vector2 startPos2;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -49,6 +56,11 @@ public class RespawnAnchor : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocityY = hoverSpeed;
         spawnPoint = GameObject.FindGameObjectWithTag("spawn").transform;
+        startPos = transform.position;
+
+        if (linkedObject != null )
+            startPos2 = startPos - linkedObject.position;
+        
         if (startActive)
         {
             TurnOn();
@@ -56,9 +68,26 @@ public class RespawnAnchor : MonoBehaviour
         InvokeRepeating(nameof(switchDirection), 0, switchTime);
     }
 
+    private void FixedUpdate()
+    {
+        if (linkedObject != null)
+        {
+            startPos = startPos2 + linkedObject.position;
+            rb.linearVelocityY = hoverSpeed * hoverDir;
+            rb.linearVelocityX = 0;
+            rb.linearVelocity += linkedObject.linearVelocity;
+        }
+
+        if (transform.position.y < startPos.y)
+        {
+            transform.position = startPos;
+        }
+    }
+
     private void switchDirection()
     {
-        rb.linearVelocityY *= -1;
+        hoverDir *= -1;
+        rb.linearVelocityY = hoverSpeed * hoverDir;
     }
 
     public void TurnOn() {

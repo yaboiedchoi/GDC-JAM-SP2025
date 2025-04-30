@@ -8,7 +8,6 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject deadBodyPrefab;
-    [SerializeField] TMP_Text sanityUi;
     [SerializeField] Slider sanityBar; 
 
     [NonSerialized] public static int curSanity = 0;
@@ -78,7 +77,6 @@ public class PlayerDeath : MonoBehaviour
 
     public void updateSanityUI()
     {
-        sanityUi.text = "Sanity: " + curSanity + "/" + maxSanity;
         sanityBar.maxValue = maxSanity;
         sanityBar.value = curSanity;
         // also send a signal to ghostspawner

@@ -4,6 +4,7 @@ using System.Collections;
 public class FallingPlatform : MonoBehaviour
 {
     [SerializeField] float holdTime; // Time before platform falls after player collided
+    [SerializeField] float despawnTime; // Set to 0 or less to have platform never despawn
 
     Rigidbody2D rb;
 
@@ -31,8 +32,12 @@ public class FallingPlatform : MonoBehaviour
         // start falling
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        yield return new WaitForSeconds(holdTime);
-        Destroy(gameObject); // probably bad idea but idc
+        if(despawnTime > 0)
+        {
+            yield return new WaitForSeconds(despawnTime);
+            Destroy(gameObject);
+        }
+
 
     }
 }

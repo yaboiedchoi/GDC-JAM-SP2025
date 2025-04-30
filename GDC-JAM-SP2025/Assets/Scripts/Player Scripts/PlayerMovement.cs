@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         velo.y = rb.linearVelocityY;
 
         // Detect jump input
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             if (isGrounded || lienencyTime > Time.time)
             {
@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            velo.y = 0;
+            //velo.y = 0;
         }
         rb.linearVelocity = velo;
 
