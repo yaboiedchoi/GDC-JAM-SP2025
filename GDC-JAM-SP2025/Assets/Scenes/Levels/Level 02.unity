@@ -304,6 +304,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea06e55dcc91f34da901e61f3fdd9ce, type: 3}
+--- !u!114 &148084398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5689470109098352588, guid: eeb82e25841fa4d20b8ea9b7d9c791db, type: 3}
+  m_PrefabInstance: {fileID: 2027135903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70239b451eddc465aa6c8f68a5d3ab45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &186468970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7603,6 +7614,7 @@ MonoBehaviour:
   sanity: 2
   button: {fileID: 797338668}
   button2: {fileID: 1915011892}
+  initialSpawn: {fileID: 148084398}
   respawn: {fileID: 1972203727}
   door: {fileID: 200617787}
 --- !u!1001 &2613672991403698308

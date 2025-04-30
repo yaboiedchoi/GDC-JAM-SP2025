@@ -7,6 +7,7 @@ public class RespawnAnchorIntro : MonoBehaviour, LevelManager
 
     [SerializeField] Button button;
     [SerializeField] Button button2;
+    [SerializeField] RespawnAnchor initialSpawn;
     [SerializeField] RespawnAnchor respawn;
     [SerializeField] Door door;
 
@@ -25,9 +26,15 @@ public class RespawnAnchorIntro : MonoBehaviour, LevelManager
         }
 
         if (button.state)
+        {
             respawn.TurnOn();
+            initialSpawn.TurnOff();
+        }
         else if (!button.state)
+        {
             respawn.TurnOff();
+            initialSpawn.TurnOn();
+        }
 
         if (button2.state)
             door.openDoor();

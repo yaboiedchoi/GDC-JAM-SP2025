@@ -461,14 +461,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  yInitialVelo: 8
-  yIncrementalVelo: 50
+  yInitialVelo: 7
+  yIncrementalVelo: 45
   maxJumpHeight: 999
-  accelTime: 0.15
+  accelTime: 0.16
   hoverCoef: 1
   yLowVelo: 3
   edgeJumpLienency: 0.1
   groundCheckDistance: 0.001
+  gravityMult: 1.2
   walkingAudioClip: {fileID: 8300000, guid: aeb58984f976026439a1b269c191a2be, type: 3}
 --- !u!114 &2644555058174276159
 MonoBehaviour:

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float yLowVelo = 2f;
     [SerializeField] float edgeJumpLienency = 0.3f; // time not on ground where player can still jump
     [SerializeField] float groundCheckDistance = 0.5f;
+    [SerializeField] float gravityMult = 1.5f; // mult incremental velo when falling
 
     [SerializeField] AudioClip walkingAudioClip;
 
@@ -181,6 +182,10 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             velo.y = rb.linearVelocityY;
+            if (yVeloDirection <= -1)
+            {
+                yVeloDirection = -gravityMult;
+            }
             velo.y += yIncrementalVelo * yVeloDirection * hoverMod * Time.deltaTime;
 
         }

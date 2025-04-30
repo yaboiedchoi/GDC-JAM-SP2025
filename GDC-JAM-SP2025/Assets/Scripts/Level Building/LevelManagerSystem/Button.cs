@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Button : MonoBehaviour
@@ -7,6 +8,7 @@ public class Button : MonoBehaviour
     private string playerTag = "Player"; // using string literals in looping code creates garbage
     Color defaultColor;
 
+    private bool colliding = false;
     private void Start()
     {
         defaultColor = GetComponent<SpriteRenderer>().color;
@@ -14,8 +16,10 @@ public class Button : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D col) 
     {
-        if (col.gameObject.tag == playerTag && !state)
+        
+        if (col.gameObject.tag == playerTag)
         {
+            colliding = true;
             pressButton();
         }
     }
@@ -24,7 +28,11 @@ public class Button : MonoBehaviour
     {
         if (col.gameObject.tag == playerTag)
         {
-            releaseButton();
+            colliding = false;
+
+            // causes annoying error when unloading scene, this is just to get rid of that
+            if (gameObject.activeSelf)
+                StartCoroutine(releaseButton());
         }
     }
 
@@ -34,9 +42,13 @@ public class Button : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.cyan; // temp just to visually see button change until have actual sprite
     }
 
-    private void releaseButton()
+    IEnumerator releaseButton()
     {
-        state = false;
-        GetComponent<SpriteRenderer>().color = defaultColor; // also temp
+        yield return new WaitForSeconds(0.1f); // need to pause for a tiny bit to ensure no false positive
+        if (!colliding)
+        {
+            state = false;
+            GetComponent<SpriteRenderer>().color = defaultColor; // also temp
+        }
     }
 }
