@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
     private void playFootstep()
     {
         SFX.pitch = UnityEngine.Random.Range(0.6f, 1.4f) * pitch;
-        SFX.PlayOneShot(footstepClip);
+        playOnce(footstepClip, (SFX.volume * 0.5f) * volume );
     }
 
     public void startFootstep(float footstepSpeed, AudioClip footstep)
