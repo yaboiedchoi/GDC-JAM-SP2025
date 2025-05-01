@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         pitch = SFX.pitch;
-        playLooped(backgroundClip, 0.8f * volume);
+       // playLooped(backgroundClip, 0.8f * volume);
     }
 
     public void setMusicVolume(float volume)
@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
         {
             clone.volume = volume;
         }
+        
     }
     private void playFootstep()
     {

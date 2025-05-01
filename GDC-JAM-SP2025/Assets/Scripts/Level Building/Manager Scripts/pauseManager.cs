@@ -43,8 +43,7 @@ public class pauseManager : MonoBehaviour
         volume = slide.value;
         audio.volume = volume;
         audMan.setMusicVolume(volume);
-
-
+        MusicManage.Instance.adjustBackVolume(volume);
     }
 
 }
