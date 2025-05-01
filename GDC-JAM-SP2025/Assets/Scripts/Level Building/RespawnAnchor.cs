@@ -11,6 +11,8 @@ public class RespawnAnchor : MonoBehaviour
 
     [SerializeField] float hoverSpeed = 5f;
     [SerializeField] float switchTime = 0.5f;
+    float startTime; // when hovering starts. randomized for variety
+    bool hoverStarted = false;
 
     [SerializeField] bool startActive = false;
 
@@ -57,6 +59,7 @@ public class RespawnAnchor : MonoBehaviour
         rb.linearVelocityY = hoverSpeed;
         spawnPoint = GameObject.FindGameObjectWithTag("spawn").transform;
         startPos = transform.position;
+        startTime = UnityEngine.Random.Range(0, 0.5f);
 
         if (linkedObject != null )
             startPos2 = startPos - linkedObject.position;
@@ -65,11 +68,17 @@ public class RespawnAnchor : MonoBehaviour
         {
             TurnOn();
         }
-        InvokeRepeating(nameof(switchDirection), 0, switchTime);
     }
 
     private void FixedUpdate()
     {
+
+        if (!hoverStarted && Time.time > startTime)
+        {
+            InvokeRepeating(nameof(switchDirection), 0, switchTime);
+            hoverStarted = true;
+        }
+
         if (linkedObject != null)
         {
             startPos = startPos2 + linkedObject.position;

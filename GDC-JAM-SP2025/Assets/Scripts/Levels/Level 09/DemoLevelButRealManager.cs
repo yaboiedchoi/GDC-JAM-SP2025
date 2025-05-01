@@ -1,50 +1,33 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RespawnAnchorIntro : MonoBehaviour, LevelManager
+public class DemoLevelButRealManager : MonoBehaviour, LevelManager
 {
-    [SerializeField] int sanity = 1;
+    [SerializeField] Lever lever;
+    [SerializeField] Door exitDoor;
+    [SerializeField] Door otherDoor;
 
-    [SerializeField] Button button;
-    [SerializeField] Button button2;
-    [SerializeField] RespawnAnchor initialSpawn;
-    [SerializeField] RespawnAnchor respawn;
-    [SerializeField] Door door;
+    [SerializeField] private int sanity = 3;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         setSanity();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        exitDoor.isOpen(lever.signal);
+        otherDoor.isOpen(!lever.signal);
+
+        // Allow to reset level by pressing r
         if (Input.GetKeyDown(KeyCode.R))
         {
             resetLevel();
         }
-
-        if (button.state)
-        {
-            respawn.TurnOn();
-            initialSpawn.TurnOff();
-        }
-        else if (!button.state)
-        {
-            respawn.TurnOff();
-            initialSpawn.TurnOn();
-        }
-
-        if (button2.state)
-            door.openDoor();
-        else if (!button2.state)
-            door.closeDoor();
     }
+
     public void nextLevel()
     {
-        SceneManager.LoadScene("Level 03");
-
+        SceneManager.LoadScene("End Menu");
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup
@@ -65,4 +48,5 @@ public class RespawnAnchorIntro : MonoBehaviour, LevelManager
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
     }
+
 }

@@ -13,6 +13,8 @@ public class CorpseManager : MonoBehaviour
     // limited corpses
     public bool limitCorpses;
 
+    public int corpseNum;
+
     int maxSanity;
 
     private void Awake() 
@@ -37,13 +39,11 @@ public class CorpseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // can have sanity-amount of corpses at once
-        // maybe can make this its own variable later if wanted
         maxSanity = PlayerDeath.getMaxSanity();
-        if (limitCorpses && corpses.Count > maxSanity) {
+        if (limitCorpses && corpses.Count > corpseNum) {
 
-            // also using max sanity to determine max amount of ghosts
-            if (GhostSpawner.ghostList.Count > maxSanity)
+            // also using corpseNum to determine max amount of ghosts
+            if (GhostSpawner.ghostList.Count > corpseNum)
                 GhostSpawner.killGhost();
 
             Destroy(corpses[0]);

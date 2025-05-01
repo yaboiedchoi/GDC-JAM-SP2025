@@ -10,6 +10,7 @@ public class DifficultyDyingLevelManager : MonoBehaviour, LevelManager
     [SerializeField] Door barrier;
     [SerializeField] Door mechanicalDoor;
     [SerializeField] Door endBarrier;
+    [SerializeField] Door lateBarrier;
 
 
     [SerializeField] Lever barrierLever;
@@ -52,6 +53,8 @@ public class DifficultyDyingLevelManager : MonoBehaviour, LevelManager
         horizonatalBarrier2.isOpen(!barrierLever.signal);
         mechanicalDoor.isOpen(barrierLever.signal ^ endLever.signal);
         barrier.isOpen(!endLever.signal ^ endLever2.signal);
+        lateBarrier.isOpen(!endLever.signal ^ endLever2.signal);
+
 
         switch (counter)
         {
@@ -87,8 +90,8 @@ public class DifficultyDyingLevelManager : MonoBehaviour, LevelManager
 
     public void nextLevel()
     {
-        //SceneManager.LoadScene("Scene Name"); Do something like this to load next level
-        Debug.Log("You beat the demo level!!!!!");
+        SceneManager.LoadScene("Level 08");
+
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup

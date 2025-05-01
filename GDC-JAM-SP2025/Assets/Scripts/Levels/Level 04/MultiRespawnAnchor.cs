@@ -20,6 +20,12 @@ public class MultiRespawnAnchor : MonoBehaviour, LevelManager
     private List<RespawnAnchor> respawnAnchors;
     private int lastActiveAnchorIndex = -1;
 
+    int activeRespawn = -1;
+    bool bPrior = false;
+    bool b2Prior = false;
+    bool b3Prior = false;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -53,15 +59,74 @@ public class MultiRespawnAnchor : MonoBehaviour, LevelManager
 
         int newActiveIndex = -1;
 
-        // Check button states, in order of priority
-        if (button2.state)
-            newActiveIndex = 1;
-        else if (button.state)
-            newActiveIndex = 2;
-        else if (button3.state)
-            newActiveIndex = 3;
+        bool debugCheck = false;
 
-        if (newActiveIndex != -1 && newActiveIndex != lastActiveAnchorIndex)
+        // In theory only one of these ifs should happen
+        if (button.state && !bPrior)
+        {
+            // newly turned on, this is the active one
+            activeRespawn = 0;
+            bPrior = true;
+            debugCheck = true;
+            Debug.Log("0 Pressed");
+        }
+        if (button2.state && !b2Prior)
+        {
+            // just in case
+            if (debugCheck)
+                Debug.LogError("Something fucked up happened with respawn anchors");
+
+            // newly turned on, this is the active one
+            activeRespawn = 2;
+            b2Prior = true;
+            debugCheck = true;
+            Debug.Log("2 Pressed");
+
+        }
+        if (button3.state && !b3Prior)
+        {
+            // just in case
+            if (debugCheck)
+                Debug.LogError("Something fucked up happened with respawn anchors");
+
+            // newly turned on, this is the active one
+            activeRespawn = 3;
+            b3Prior = true;
+            Debug.Log("3 Pressed");
+
+        }
+
+        // Set prior trackers to current state
+        bPrior = button.state;
+        b2Prior = button2.state;
+        b3Prior = button3.state;
+
+
+        switch (activeRespawn)
+        {
+            case 0:
+                respawn2.TurnOn();
+                respawn.TurnOff();
+                respawn1.TurnOff();
+                respawn3.TurnOff();
+                break;
+            case 2:
+                respawn2.TurnOff();
+                respawn.TurnOff();
+                respawn1.TurnOn();
+                respawn3.TurnOff();
+                break;
+            case 3:
+                respawn2.TurnOff();
+                respawn.TurnOff();
+                respawn1.TurnOff();
+                respawn3.TurnOn();
+                break;
+
+        }
+
+
+        /*if (newActiveIndex != -1 && newActiveIndex != lastActiveAnchorIndex)
         {
             // Disable all anchors first
             foreach (var anchor in respawnAnchors)
@@ -82,7 +147,7 @@ public class MultiRespawnAnchor : MonoBehaviour, LevelManager
             }
             respawnAnchors[0].TurnOn();
             lastActiveAnchorIndex = 0;
-        }
+        }*/
     }
 
     /// <summary>
@@ -106,8 +171,8 @@ public class MultiRespawnAnchor : MonoBehaviour, LevelManager
     }
     public void nextLevel()
     {
-        //SceneManager.LoadScene("Scene Name"); Do something like this to load next level
-        Debug.Log("You beat the demo level!!!!!");
+        SceneManager.LoadScene("Level 05");
+
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup

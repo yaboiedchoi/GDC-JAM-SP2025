@@ -1,4 +1,4 @@
-using UnityEditor.SearchService;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
@@ -15,13 +15,15 @@ public class Goal : MonoBehaviour
             levelManager = GameObject.FindGameObjectWithTag("Level Manager");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private async Task OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             if(levelManager != null && levelManager.TryGetComponent(out LevelManager levMan))
             {
                 audioManager.playOnce(tp, 0.4f);
+                await Task.Delay(300);
                 levMan.nextLevel();
             }
             else
