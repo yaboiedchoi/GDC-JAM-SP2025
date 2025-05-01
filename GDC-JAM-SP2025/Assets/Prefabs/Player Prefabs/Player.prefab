@@ -486,6 +486,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   deadBodyPrefab: {fileID: 2688468379910047996, guid: 36d4ad064dc96e543b6564337174412c, type: 3}
   sanityBar: {fileID: 2284195394535763142}
+  bleh: {fileID: 8300000, guid: bffcebe5fb21b6d4b9c83ea7a855636b, type: 3}
 --- !u!50 &6194036754337210951
 Rigidbody2D:
   serializedVersion: 5

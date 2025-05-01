@@ -23,8 +23,14 @@ public class PlayerDeath : MonoBehaviour
 
     static List<GhostMovement> ghosts = new List<GhostMovement>();
 
+    private AudioManager audioManager;
+    [SerializeField] AudioClip bleh;
+
+
+
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         movementScript = GetComponent<PlayerMovement>();
         curSanity = maxSanity;
     }
@@ -45,6 +51,7 @@ public class PlayerDeath : MonoBehaviour
   
     public void killPlayer()
     {
+        audioManager.playOnce(bleh, 0.2f);
         lastPos = transform.position;
         lastRot = transform.rotation;
         curSanity--;

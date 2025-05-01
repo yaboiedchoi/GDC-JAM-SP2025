@@ -24,9 +24,14 @@ public class GhostMovement : MonoBehaviour
     Vector2 playerDir;
     Vector3 spawnCoord;
 
-  
+
+    private AudioManager audioManager;
+    [SerializeField] AudioClip spook;
+
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+        audioManager.playOnce(spook, 0.4f);
         spawnCoord = transform.position;
 
         rb = GetComponent<Rigidbody2D>();
