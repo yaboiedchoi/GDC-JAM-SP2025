@@ -31,10 +31,7 @@ public class GhostIntroLevelManager : MonoBehaviour, LevelManager
         barrier3.isOpen(button3.state);
         endBarrier.isOpen(endButton.state);
 
-        if (PlayerDeath.curSanity < 2 && !button2.state)
-        {
-            PlayerDeath.curSanity = 2;
-        }
+  
 
 
     }
