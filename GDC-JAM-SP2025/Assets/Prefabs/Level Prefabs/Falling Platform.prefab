@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdTime: 2
+  despawnTime: 0
+  clunk: {fileID: 8300000, guid: 610a24b7acc8b69428a2e505cdd9e531, type: 3}
 --- !u!61 &8518281468679544892
 BoxCollider2D:
   m_ObjectHideFlags: 0

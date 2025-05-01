@@ -152,6 +152,7 @@ MonoBehaviour:
   cooldownTime: 3
   deviationTime: 5
   goSpawn: 0
+  spook: {fileID: 8300000, guid: 5b02a8b3400e5b545954757edf486473, type: 3}
 --- !u!50 &7337277181580488620
 Rigidbody2D:
   serializedVersion: 5

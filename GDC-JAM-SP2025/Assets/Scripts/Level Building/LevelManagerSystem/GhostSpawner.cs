@@ -9,6 +9,7 @@ public class GhostSpawner : MonoBehaviour
     [SerializeField] GameObject ghost;
     static GameObject ghostPrefab = null;
 
+
     [SerializeField] bool ghostGoSpawn;
     static bool goSpawn = false;
 
@@ -24,6 +25,8 @@ public class GhostSpawner : MonoBehaviour
             goSpawn = ghostGoSpawn;
         }
     }
+
+    
 
     public static void spawnGhost(Vector3 spawnLocation)
     {

@@ -10,8 +10,12 @@ public class FallingPlatform : MonoBehaviour
 
     string playerTag = "Player";
 
+    private AudioManager audioManager;
+    [SerializeField] AudioClip clunk;
+
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Static;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -22,6 +26,9 @@ public class FallingPlatform : MonoBehaviour
         if (col.gameObject.tag == playerTag)
         {
             StartCoroutine(DropPlatform());
+        } else
+        {
+            audioManager.playOnce(clunk, 0.4f);
         }
     }
 
