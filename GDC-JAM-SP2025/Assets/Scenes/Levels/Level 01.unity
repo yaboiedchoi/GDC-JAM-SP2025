@@ -282,7 +282,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.16
+  m_Volume: 0.224
   m_Pitch: 1.5
   Loop: 0
   Mute: 0
@@ -732,7 +732,7 @@ Transform:
   m_GameObject: {fileID: 553819215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16, y: 9, z: -1}
+  m_LocalPosition: {x: 16, y: 9, z: -1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -939,8 +939,8 @@ Transform:
   m_GameObject: {fileID: 945836479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: 8.49, z: 0}
-  m_LocalScale: {x: 4.466037, y: 4.466037, z: 4.466037}
+  m_LocalPosition: {x: -0.71, y: 9.05, z: 0}
+  m_LocalScale: {x: 4.6241345, y: 4.6241345, z: 4.6241345}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 495656461}
@@ -6987,6 +6987,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2465372285478460386, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465372285478460386, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2644555058174276159, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -6995,10 +7003,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 553819217}
-    - target: {fileID: 3816969412212195157, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
-      propertyPath: m_PixelPerfect
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 4671079589243262575, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 553819217}
     - target: {fileID: 5906280676027830783, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7009,6 +7017,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6022469581653452466, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606889316067888595, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606889316067888595, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606889316067888595, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8044999922918302710, guid: 9b97ac3ec79416342bd614d94a382fe8, type: 3}

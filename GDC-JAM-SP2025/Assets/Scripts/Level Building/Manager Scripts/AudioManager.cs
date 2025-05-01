@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -8,12 +9,26 @@ public class AudioManager : MonoBehaviour
     AudioClip footstepClip;
     [SerializeField] AudioClip backgroundClip;
 
+    [NonSerialized] public float volume = 0.5f;
+
+    AudioSource clone;
+
     bool playing;
     float pitch;
     private void Start()
     {
         pitch = SFX.pitch;
-        playLooped(backgroundClip, 0.4f);
+        playLooped(backgroundClip, 0.8f * volume);
+    }
+
+    public void setMusicVolume(float volume)
+    {
+        this.volume = volume;
+
+        if (clone != null)
+        {
+            clone.volume = volume;
+        }
     }
     private void playFootstep()
     {
@@ -41,7 +56,7 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource clone = gameObject.AddComponent<AudioSource>();
         clone.clip = file;
-        clone.volume = vol;
+        clone.volume = vol * 2 * volume;
         clone.pitch = 1;
         clone.loop = false;
         clone.Play();
@@ -50,9 +65,9 @@ public class AudioManager : MonoBehaviour
 
     public void playLooped(AudioClip file, float vol)
     {
-        AudioSource clone = gameObject.AddComponent<AudioSource>();
+        clone = gameObject.AddComponent<AudioSource>();
         clone.clip = file;
-        clone.volume = vol;
+        clone.volume = volume;
         clone.pitch = 1;
         clone.loop = true;
         clone.Play();

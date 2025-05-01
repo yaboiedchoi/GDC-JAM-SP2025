@@ -26,7 +26,8 @@ public class DeadBodyTrainLevelManager : MonoBehaviour, LevelManager
 
     public void nextLevel()
     {
-        //SceneManager.LoadScene("Tutorial 02");
+        SceneManager.LoadScene("Level 09");
+
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup

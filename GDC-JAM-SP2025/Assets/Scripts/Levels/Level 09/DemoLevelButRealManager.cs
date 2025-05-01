@@ -1,19 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SpikeBridgeLevelManager : MonoBehaviour, LevelManager
+public class DemoLevelButRealManager : MonoBehaviour, LevelManager
 {
+    [SerializeField] Lever lever;
+    [SerializeField] Door exitDoor;
+    [SerializeField] Door otherDoor;
 
-    [SerializeField] int sanity = 7;
-
+    [SerializeField] private int sanity = 3;
 
     private void Start()
     {
         setSanity();
     }
-
     private void Update()
     {
+        exitDoor.isOpen(lever.signal);
+        otherDoor.isOpen(!lever.signal);
+
+        // Allow to reset level by pressing r
         if (Input.GetKeyDown(KeyCode.R))
         {
             resetLevel();
@@ -22,7 +27,7 @@ public class SpikeBridgeLevelManager : MonoBehaviour, LevelManager
 
     public void nextLevel()
     {
-        SceneManager.LoadScene("Level 07");
+        SceneManager.LoadScene("End Menu");
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup
