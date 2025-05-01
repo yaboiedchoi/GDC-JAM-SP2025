@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 86347580814427189, guid: 1ea06e55dcc91f34da901e61f3fdd9ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.12
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 86347580814427189, guid: 1ea06e55dcc91f34da901e61f3fdd9ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3233,7 +3233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 86347580814427189, guid: 1ea06e55dcc91f34da901e61f3fdd9ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.12
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 86347580814427189, guid: 1ea06e55dcc91f34da901e61f3fdd9ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7751,6 +7751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpses: []
   limitCorpses: 0
+  corpseNum: 0
 --- !u!114 &2078317466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7791,7 +7792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266d2610a1815a44da9ef23a40be7806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sanity: 2
+  sanity: 3
   button: {fileID: 797338668}
   button2: {fileID: 1915011892}
   initialSpawn: {fileID: 148084398}

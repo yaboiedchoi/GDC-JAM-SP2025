@@ -1425,7 +1425,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Dead Body
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2503212262339129709, guid: 36d4ad064dc96e543b6564337174412c, type: 3}
+    - {fileID: 1496190700281881327, guid: 36d4ad064dc96e543b6564337174412c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2395,7 +2397,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Dead Body (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2503212262339129709, guid: 36d4ad064dc96e543b6564337174412c, type: 3}
+    - {fileID: 1496190700281881327, guid: 36d4ad064dc96e543b6564337174412c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

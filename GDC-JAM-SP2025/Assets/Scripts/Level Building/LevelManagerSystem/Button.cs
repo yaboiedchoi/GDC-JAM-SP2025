@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
+
+    [SerializeField] Sprite onSprite;
+    Sprite offSprite;
+
     [NonSerialized] public bool state = false;
     private string playerTag = "Player"; // using string literals in looping code creates garbage
-    Color defaultColor;
 
     private bool colliding = false;
     private void Start()
     {
-        defaultColor = GetComponent<SpriteRenderer>().color;
+        offSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     private void OnCollisionStay2D(Collision2D col) 
@@ -39,7 +42,7 @@ public class Button : MonoBehaviour
     private void pressButton()
     {
         state = true;
-        GetComponent<SpriteRenderer>().color = Color.cyan; // temp just to visually see button change until have actual sprite
+        GetComponent<SpriteRenderer>().sprite = onSprite; // temp just to visually see button change until have actual sprite
     }
 
     IEnumerator releaseButton()
@@ -48,7 +51,7 @@ public class Button : MonoBehaviour
         if (!colliding)
         {
             state = false;
-            GetComponent<SpriteRenderer>().color = defaultColor; // also temp
+            GetComponent<SpriteRenderer>().sprite = offSprite; // also temp
         }
     }
 }

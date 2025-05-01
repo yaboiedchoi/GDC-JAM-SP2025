@@ -480,6 +480,87 @@ Transform:
   - {fileID: 1793246416}
   m_Father: {fileID: 871377959}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &328610617
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1731040512}
+    m_Modifications:
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6.9772763
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289455019502007121, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: raiseMult
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120402194746838690, guid: e0951f4b98f063748a5899624442985c, type: 3}
+      propertyPath: m_Name
+      value: Late Barrier
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0951f4b98f063748a5899624442985c, type: 3}
+--- !u!4 &437343561 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 770878256650186249, guid: e0951f4b98f063748a5899624442985c, type: 3}
+  m_PrefabInstance: {fileID: 328610617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &437343567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6289455019502007121, guid: e0951f4b98f063748a5899624442985c, type: 3}
+  m_PrefabInstance: {fileID: 328610617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5aa743186f8724d8a915905b1500b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &479049594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3578,6 +3659,7 @@ Transform:
   m_Children:
   - {fileID: 1338880420}
   - {fileID: 1220665202}
+  - {fileID: 437343561}
   - {fileID: 994728668}
   - {fileID: 1502395499}
   - {fileID: 57688232}
@@ -8215,7 +8297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpses: []
-  limitCorpses: 1
+  limitCorpses: 0
+  corpseNum: 0
 --- !u!114 &2078317466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8262,6 +8345,7 @@ MonoBehaviour:
   barrier: {fileID: 1220665208}
   mechanicalDoor: {fileID: 4972490952762812377}
   endBarrier: {fileID: 994728669}
+  lateBarrier: {fileID: 437343567}
   barrierLever: {fileID: 1806167423}
   endLever: {fileID: 2122524638}
   endLever2: {fileID: 589581587}
