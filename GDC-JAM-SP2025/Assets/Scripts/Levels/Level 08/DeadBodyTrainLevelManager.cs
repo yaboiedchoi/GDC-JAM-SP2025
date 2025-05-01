@@ -1,17 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GhostIntroLevelManager : MonoBehaviour, LevelManager
+public class DeadBodyTrainLevelManager : MonoBehaviour, LevelManager
 {
-    [SerializeField] int sanity = 4;
+    [SerializeField] int sanity = 10;
     [SerializeField] Button button1;
-    [SerializeField] Door barrier1;
     [SerializeField] Button button2;
-    [SerializeField] Door barrier2;
-    [SerializeField] Button button3;
-    [SerializeField] Door barrier3;
-    [SerializeField] Button endButton;
-    [SerializeField] Door endBarrier;
+    [SerializeField] Door door;
 
 
     private void Start()
@@ -26,20 +21,12 @@ public class GhostIntroLevelManager : MonoBehaviour, LevelManager
             resetLevel();
         }
 
-        barrier1.isOpen(button1.state);
-        barrier2.isOpen(button2.state);
-        barrier3.isOpen(button3.state);
-        endBarrier.isOpen(endButton.state);
-
-  
-
-
+        door.isOpen(button1.state || button2.state);
     }
 
     public void nextLevel()
     {
-        SceneManager.LoadScene("Level 01");
-
+        //SceneManager.LoadScene("Tutorial 02");
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup
