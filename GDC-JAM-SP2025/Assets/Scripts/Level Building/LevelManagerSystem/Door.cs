@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isUnlocked && transform.position.y < raiseDist + ogPos.y && !pause)
+        if (isUnlocked && transform.position.y < raiseDist + ogPos.y)
         {
             // still needs to rise
             rb.linearVelocityY = raiseSpeed;
