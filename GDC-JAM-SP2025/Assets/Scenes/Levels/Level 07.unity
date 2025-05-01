@@ -186,7 +186,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.16
   m_Pitch: 1.5
   Loop: 0
   Mute: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFX: {fileID: 186468971}
+  backgroundClip: {fileID: 8300000, guid: 63dd8cc32499b5343bff06266fe8a391, type: 3}
 --- !u!4 &186468973
 Transform:
   m_ObjectHideFlags: 0
@@ -625,6 +626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 2670391817217449517, guid: e6a268b96e2226d4cbaf6b66bda52126, type: 3}
+      propertyPath: tp
+      value: 
+      objectReference: {fileID: 8300000, guid: 117c02123be992d439c3b0a9f20c8c2e, type: 3}
     - target: {fileID: 3644113478715620461, guid: e6a268b96e2226d4cbaf6b66bda52126, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5

@@ -5,11 +5,13 @@ public class Lever : MonoBehaviour, IInteractable
 
     [SerializeField] GameObject UI;
     public bool signal = false;
-
+    [SerializeField] AudioClip click;
     [SerializeField] SpriteRenderer sr;
+    private AudioManager audioManager;
 
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         if (UI != null) 
             UI.SetActive(false);
 
@@ -18,6 +20,7 @@ public class Lever : MonoBehaviour, IInteractable
     }
     public void interact()
     {
+        audioManager.playOnce(click, 0.2f);
         signal = !signal;
         // green if active, 107 255 0
         // purple if inactive, 150, 0, 255

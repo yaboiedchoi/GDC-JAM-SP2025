@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  tp: {fileID: 8300000, guid: 117c02123be992d439c3b0a9f20c8c2e, type: 3}
 --- !u!61 &4782355511264257683
 BoxCollider2D:
   m_ObjectHideFlags: 0

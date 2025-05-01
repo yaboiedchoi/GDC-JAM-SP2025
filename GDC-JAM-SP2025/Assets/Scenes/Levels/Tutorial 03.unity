@@ -396,7 +396,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.495
+  m_Volume: 0.16
   m_Pitch: 1.5
   Loop: 0
   Mute: 0
@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFX: {fileID: 186468971}
+  backgroundClip: {fileID: 8300000, guid: 63dd8cc32499b5343bff06266fe8a391, type: 3}
 --- !u!4 &186468973
 Transform:
   m_ObjectHideFlags: 0
@@ -8708,14 +8709,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Response Protocol Initialized:
 
-    
 
-    Monitoring remaining cognitive
-    stability.
 
-    
+    Monitoring remaining cognitive stability.
 
-    Output: top-right [Sanity Bar].
+
+
+    Output:
+    top-right [Sanity Bar].
 
 '
   m_isRightToLeft: 0

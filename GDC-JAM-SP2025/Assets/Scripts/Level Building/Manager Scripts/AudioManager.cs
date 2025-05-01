@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         pitch = SFX.pitch;
-        playLooped(SFX, backgroundClip);
+        playLooped(backgroundClip, 0.4f);
     }
     private void playFootstep()
     {
@@ -37,22 +37,22 @@ public class AudioManager : MonoBehaviour
         playing = false;
     }
 
-    public void playOnce(AudioSource og, AudioClip file)
+    public void playOnce(AudioClip file, float vol)
     {
         AudioSource clone = gameObject.AddComponent<AudioSource>();
         clone.clip = file;
-        clone.volume = og.volume;
+        clone.volume = vol;
         clone.pitch = 1;
         clone.loop = false;
         clone.Play();
         // then delete it if I need?
     }
 
-    public void playLooped(AudioSource og, AudioClip file)
+    public void playLooped(AudioClip file, float vol)
     {
         AudioSource clone = gameObject.AddComponent<AudioSource>();
         clone.clip = file;
-        clone.volume = 0.4f;
+        clone.volume = vol;
         clone.pitch = 1;
         clone.loop = true;
         clone.Play();
