@@ -41,8 +41,8 @@ public class GhostIntroLevelManager : MonoBehaviour, LevelManager
 
     public void nextLevel()
     {
-        //SceneManager.LoadScene("Scene Name"); Do something like this to load next level
-        Debug.Log("You beat the demo level!!!!!");
+        SceneManager.LoadScene("Level 01");
+
     }
 
     // Have to set static variable maxSanity, will likely just be called in start() or whatever you use for level setup
