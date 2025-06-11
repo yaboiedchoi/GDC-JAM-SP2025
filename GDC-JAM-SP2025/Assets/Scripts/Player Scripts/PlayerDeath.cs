@@ -8,7 +8,7 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject deadBodyPrefab;
-    [SerializeField] Slider sanityBar; 
+    Slider sanityBar; 
 
     [NonSerialized] public static int curSanity = 0;
     private static int maxSanity = 5; // use setMaxSanity to set from another script. Otherwise this is default value
@@ -33,6 +33,11 @@ public class PlayerDeath : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         movementScript = GetComponent<PlayerMovement>();
         curSanity = maxSanity;
+    }
+
+    private void Awake()
+    {
+        sanityBar = GameObject.FindGameObjectWithTag("sanity").GetComponent<Slider>();
     }
 
     // Sets max sanity and updates player to full sanity

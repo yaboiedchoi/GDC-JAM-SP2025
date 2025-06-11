@@ -9,6 +9,8 @@ TagManager:
   - audio
   - Level Manager
   - spawn
+  - pause
+  - sanity
   layers:
   - Default
   - TransparentFX
